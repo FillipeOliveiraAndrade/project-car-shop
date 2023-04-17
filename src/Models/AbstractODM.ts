@@ -1,6 +1,6 @@
 import { Model, Schema, model, models } from 'mongoose';
 
-class AbstractODM<T> {
+abstract class AbstractODM<T> {
   protected model: Model<T>;
   protected schema: Schema;
   protected modelName: string;
@@ -15,7 +15,7 @@ class AbstractODM<T> {
     return this.model.create({ ...obj });
   }
 
-/*   public async findAll(): Promise<T[]> {
+  public async findAll(): Promise<T[]> {
     const cars = this.model.find({});
     return cars;
   }
@@ -23,7 +23,7 @@ class AbstractODM<T> {
   public async findOne(_id: string): Promise<T | null> {
     const car = this.model.findOne({ _id });
     return car;
-  } */
+  }
 }
 
 export default AbstractODM;

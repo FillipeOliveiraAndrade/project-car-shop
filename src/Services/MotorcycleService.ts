@@ -13,6 +13,21 @@ class MotorcycleService {
     const newMotorcycle = await motorcycleODM.create(motorcycle);
     return this.createMotorcycleDomain(newMotorcycle);
   }
+
+  public async findMotorcycles() {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycles = await motorcycleODM.findAll();
+    return motorcycles.map((item) => this.createMotorcycleDomain(item));
+  }
+
+  public async findOneMotorcycle(id: string) {
+    const motorcycleODM = new MotorcycleODM();
+    const motorcycle = await motorcycleODM.findOne(id);
+
+    if (!motorcycle) return { type: 404, message: 'Motorcycle not found' };
+
+    return { type: null, message: this.createMotorcycleDomain(motorcycle) };
+  }
 }
 
 export default MotorcycleService;

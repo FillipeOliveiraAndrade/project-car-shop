@@ -8,14 +8,14 @@ motorcycleRoutes.post(
   (req, res, next) => new MotorcycleController(req, res, next).createNewMotorcycle(),
 );
 
-/* carsRoutes.get(
-  '/cars',
-  (req, res, next) => new CarController(req, res, next).findAllCars(),
+motorcycleRoutes.get(
+  '/motorcycles',
+  (req, res, next) => new MotorcycleController(req, res, next).findAllMotorcycle(),
 );
 
-carsRoutes.get(
-  '/cars/:id',
-  (req, res, next) => new CarController(req, res, next).findCarById(),
-); */
+motorcycleRoutes.get(
+  '/motorcycles/:id',
+  (req, res, next) => new MotorcycleController(req, res, next).findMotorcycleById(),
+);
 
 export default motorcycleRoutes;

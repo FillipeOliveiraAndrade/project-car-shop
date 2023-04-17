@@ -5,7 +5,6 @@ import MotorcycleService from '../../../src/Services/MotorcycleService';
 import Motorcycle from '../../../src/Domains/Motorcycle';
 import motorcyleMocks from '../../mocks/motorcycleMocks';
 import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
-import AbstractODM from '../../../src/Models/AbstractODM';
 
 const motorcycleOutput: Motorcycle = new Motorcycle({
   model: 'Honda Cb 600f Hornet',

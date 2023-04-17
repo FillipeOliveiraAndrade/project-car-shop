@@ -5,7 +5,6 @@ import carMocks from '../../mocks/carMocks';
 import CarService from '../../../src/Services/CarService';
 import Car from '../../../src/Domains/Car';
 import ICar from '../../../src/Interfaces/ICar';
-import AbstractODM from '../../../src/Models/AbstractODM';
 
 const carInput: ICar = {
   model: 'Opala',

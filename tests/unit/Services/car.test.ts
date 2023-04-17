@@ -78,5 +78,12 @@ describe('Testando endpoint /cars', function () {
     expect(message).to.be.deep.equal(carOutput);
   });
 
+  it('Deve retornar null caso seja um valor null', async function () {
+    const service = new CarService();
+    const result = service.createCarDomain(null);
+
+    expect(result).to.be.equal(null);
+  });
+
   afterEach(function () { return sinon.restore(); });
 });

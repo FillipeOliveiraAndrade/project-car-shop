@@ -77,5 +77,12 @@ describe('Testando endpoint /motorcyles', function () {
     expect(message).to.be.deep.equal(motorcycleOutput);
   });
 
+  it('Deve retornar null caso seja um valor null', async function () {
+    const service = new MotorcycleService();
+    const result = service.createMotorcycleDomain(null);
+
+    expect(result).to.be.equal(null);
+  });
+
   afterEach(function () { return sinon.restore(); });
 });

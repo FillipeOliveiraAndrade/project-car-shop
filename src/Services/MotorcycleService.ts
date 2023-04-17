@@ -14,6 +14,16 @@ class MotorcycleService {
     return this.createMotorcycleDomain(newMotorcycle);
   }
 
+  public async updateMotorcycle(id: string, motorcycle: IMotorcycle) {
+    const motorcycleODM = new MotorcycleODM();
+    
+    const motorcycleExist = await motorcycleODM.findOne(id);
+    if (!motorcycleExist) return { type: 404, message: 'Motorcycle not found' };
+
+    const motorcycleUpdated = await motorcycleODM.update(id, motorcycle);
+    return { type: null, message: this.createMotorcycleDomain(motorcycleUpdated) };
+  }
+
   public async findMotorcycles() {
     const motorcycleODM = new MotorcycleODM();
     const motorcycles = await motorcycleODM.findAll();

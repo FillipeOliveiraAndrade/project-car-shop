@@ -5,6 +5,7 @@ import carMocks from '../../mocks/carMocks';
 import CarService from '../../../src/Services/CarService';
 import Car from '../../../src/Domains/Car';
 import ICar from '../../../src/Interfaces/ICar';
+import AbstractODM from '../../../src/Models/AbstractODM';
 
 const carInput: ICar = {
   model: 'Opala',
@@ -65,6 +66,17 @@ describe('Testando endpoint /cars', function () {
     const service = new CarService();
     const { message } = await service.findOneCar(carId);
     expect(message).to.be.equal('Car not found');
+  });
+
+  it('Deveria atualizar um carro com sucesso', async function () {
+    sinon.stub(Model, 'findOne').resolves(true);
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutput);
+    const id = '642b0df19506445d7b0bc77b';
+
+    const service = new CarService();
+    const { message } = await service.updateCar(id, carInput);
+
+    expect(message).to.be.deep.equal(carOutput);
   });
 
   afterEach(function () { return sinon.restore(); });

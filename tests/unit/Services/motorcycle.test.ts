@@ -5,6 +5,7 @@ import MotorcycleService from '../../../src/Services/MotorcycleService';
 import Motorcycle from '../../../src/Domains/Motorcycle';
 import motorcyleMocks from '../../mocks/motorcycleMocks';
 import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
+import AbstractODM from '../../../src/Models/AbstractODM';
 
 const motorcycleOutput: Motorcycle = new Motorcycle({
   model: 'Honda Cb 600f Hornet',
@@ -65,6 +66,16 @@ describe('Testando endpoint /motorcyles', function () {
     const service = new MotorcycleService();
     const { message } = await service.findOneMotorcycle(MotorcycleId);
     expect(message).to.be.equal('Motorcycle not found');
+  });
+
+  it('Deveria atualizar uma moto com sucesso', async function () {
+    sinon.stub(Model, 'findOne').resolves(true);
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(motorcycleOutput);
+
+    const service = new MotorcycleService();
+    const { message } = await service.updateMotorcycle('642b0df19506445d7b0bc77b', motorcycleInput);
+
+    expect(message).to.be.deep.equal(motorcycleOutput);
   });
 
   afterEach(function () { return sinon.restore(); });
